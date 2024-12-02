@@ -1,62 +1,137 @@
-<div>
-  <h1 class="font-bold text-4xl">Registrations#new</h1>
-  <p>Find me in app/views/registrations/new.html.erb</p>
-</div>
-<h1>Sign Up</h1>
+<div class="flex justify-center items-center md:min-h-screen p-4">
+  <!-- Main Container -->
+  <div class="bg-white shadow-2xl shadow-indigo-300/20 w-full max-w-[85rem] p-1 rounded-3xl">
+    <div class="grid md:grid-cols-8 grid-cols-1">
+      <!-- Left Side -->
+      <div class="md:col-span-5 md:order-1 order-2 col-span-1 md:p-20 p-4">
+        <div class="flex items-start gap-6">
+          <div class="bg-indigo-500 size-16 flex justify-center items-center rounded-2xl">
+            <!-- <img src="#" alt="Your Logo" class="h-auto w-12" /> -->
+          </div>
+          <div class="flex flex-col gap-1">
+            <h1 class="text-[1.6rem] font-bold leading-none text-zinc-700">Get started to COM-GU!</h1>
+            <span class="text-sm text-zinc-700">Kindly fill out the necessary fields to proceed.</span>
+          </div>
+        </div>
+        <!-- Form -->
+        <%= form_with model: @user, 
+            url: registration_path, 
+            local: true, 
+            class: "w-full grid md:grid-cols-2 grid-cols-1 gap-5 mt-8" do |form| %>
+          <!-- Display Error Messages -->
+          <% if form.object.errors.any? %>
+            <div class="error_messages">
+              <h2>There were errors with your submission:</h2>
+              <ul>
+                <% form.object.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <!-- First name -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="first-name" class="text-sm font-medium text-zinc-700">First name</label>
+            <input type="text" id="first-name" placeholder="E.g. John"
+              class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :firstname, "First Name", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.text_field :firstname, 
+                id: "firstname",
+                placeholder: "Enter your first name",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Last name -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="last-name" class="text-sm font-medium text-zinc-700">Last name</label>
+            <input type="text" id="last-name" placeholder="E.g. Doe" %>
+              <%# class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :lastname, "Last Name", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.text_field :lastname, 
+                placeholder: "E.g. Doe",
+                id: "lastname",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Username -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="username" class="text-sm font-medium text-zinc-700">Username</label>
+            <input type="text" id="username" placeholder="E.g. JohnDoe12"
+              class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :username, "Username", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.text_field :username, 
+                placeholder: "E.g. JohnDoe12",
+                id: "username",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Email address -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="emal-address" class="text-sm font-medium text-zinc-700">Email address</label>
+            <input type="text" id="emal-address" placeholder="E.g. john.doe@email.com"
+              class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :email, "Email", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.email_field :email, 
+                placeholder: "E.g. john.doe@email.com",
+                id: "email",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Password -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="password" class="text-sm font-medium text-zinc-700">Password</label>
+            <input type="password" id="password" placeholder="Your password"
+              class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :password, "Password", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.password_field :password, 
+                placeholder: "Enter your password",
+                id: "password",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Confirm password -->
+          <div class="flex flex-col gap-1.5 col-span-1">
+            <%# <label for="confirm-password" class="text-sm font-medium text-zinc-700">Confirm password</label>
+            <input type="password" id="confirm-password" placeholder="Your password"
+              class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" /> %>
+            <%= form.label :password_confirmation, "Confirm Password", class: "text-sm font-medium text-zinc-700" %>
+            <%= form.password_field :password_confirmation, 
+                placeholder: "Confirm your password",
+                id: "password_confirmation",
+                class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-4 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40" %>
+          </div>
+          <!-- Checkbox Agree -->
+          <div class="col-span-full flex items-center">
+            <input id="agree-checkbox" type="checkbox"
+              class="cursor-pointer rounded border border-indigo-200 bg-indigo-50/50 text-indigo-500 transition duration-300 ease-in-out focus:ring-2 focus:ring-indigo-500" />
+            <label for="agree-checkbox" class="ms-2 text-sm font-medium text-zinc-700">I agree to the terms and
+              conditions & privacy policy.</label>
+          </div>
+          <div class="col-span-full flex flex-col gap-6">
+            <%# <button
+              <%# class="w-full rounded-lg bg-indigo-500 py-2 text-sm font-medium text-zinc-100 transition duration-300 ease-in-out hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-400">Create
+              account</button> %> 
+              <%= form.submit "Sign Up", class: "w-full rounded-lg bg-indigo-500 py-2 text-sm font-medium text-zinc-100 transition duration-300 ease-in-out hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-400" %>
 
-<%= form_with model: @user, url: registration_path, local: true do |form| %>
-  
-  <!-- Display Error Messages -->
-  <% if form.object.errors.any? %>
-    <div class="error_messages">
-      <h2>There were errors with your submission:</h2>
-      <ul>
-        <% form.object.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+            <div class="flex flex-col items-center">
+              <span class="text-center text-sm text-zinc-700">Already have an account?</span>
+              <%# <a href="#" class="ml-1 text-sm text-indigo-500 underline">Sign in here
+              </a> %>
+              <%= link_to "Sign up here", new_session_path, class: "ml-1 text-sm text-indigo-500 underline" %>
+            </div>
+          </div>
         <% end %>
-      </ul>
+      </div>
+      <!-- Right Side -->
+      <aside class="md:col-span-3 grid-cols-1 md:order-2 order-1 relative md:h-full h-[20rem]">
+        <%# <img class="absolute z-0 h-full w-full rounded-[1.4rem] object-cover p-2" src="/src/assets/com-gu-login.png"
+          alt="Sample Illustration" /> %>
+        <%= image_tag "com-gu-login.png", 
+                        class: "absolute z-0 h-full w-full rounded-[1.4rem] object-cover p-2", 
+                        alt: "Sample Illustration" %>
+        <div class="absolute bottom-7 mx-7 md:bottom-10 md:mx-10">
+          <h1 class="mb-3.5 text-[2.6rem] font-bold leading-none text-white md:text-[3.6rem]">COM-GU</h1>
+          <p class="text-sm text-white w-full max-w-md">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis
+            aliquid
+            voluptates consequatur earum saepe incidunt alias laboriosam porro illum doloremque, voluptatibus adipisci
+            id, quae totam nobis? Ratione delectus unde cum!</p>
+        </div>
+      </aside>
     </div>
-  <% end %>
-
-  <!-- Username Field -->
-  <div>
-    <%= form.label :username, "Username" %>
-    <%= form.text_field :username, placeholder: "Enter your username" %>
   </div>
-
-  <!-- Firstname Field -->
-  <div>
-    <%= form.label :firstname, "First Name" %>
-    <%= form.text_field :firstname, placeholder: "Enter your first name" %>
-  </div>
-
-  <!-- Lastname Field -->
-  <div>
-    <%= form.label :lastname, "Last Name" %>
-    <%= form.text_field :lastname, placeholder: "Enter your last name" %>
-  </div>
-
-  <!-- Email Field -->
-  <div>
-    <%= form.label :email, "Email" %>
-    <%= form.email_field :email, placeholder: "Enter your email" %>
-  </div>
-
-  <!-- Password Field -->
-  <div>
-    <%= form.label :password, "Password" %>
-    <%= form.password_field :password, placeholder: "Enter your password" %>
-  </div>
-
-  <!-- Password Confirmation Field -->
-  <div>
-    <%= form.label :password_confirmation, "Confirm Password" %>
-    <%= form.password_field :password_confirmation, placeholder: "Confirm your password" %>
-  </div>
-
-  <!-- Submit Button -->
-  <div>
-    <%= form.submit "Sign Up" %>
-  </div>
-
-<% end %>
+</div>
