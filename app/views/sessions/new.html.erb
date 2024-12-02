@@ -4,10 +4,11 @@
         <div class="grid md:grid-cols-2 grid-cols-1">
         <!-- Left illustration -->
             <aside class="relative md:h-full h-[20rem]">
-                <img class="absolute z-0 h-full w-full rounded-[1.4rem] object-cover p-2" src="/src/assets/com-gu-login.png"
-                alt="Sample Illustration" />
+                <%= image_tag "com-gu-login.png", 
+                        class: "absolute z-0 h-full w-full rounded-[1.4rem] object-cover p-2", 
+                        alt: "Sample Illustration" %>
                 <div class="absolute bottom-7 mx-7 md:bottom-10 md:mx-10">
-                    <h1 class="mb-3.5 text-[2.6rem] font-bold leading-none text-white md:text-[3.6rem]">COM-GU</h1>
+                    <h1 class="mb-3.5 text-[2.6rem] font-bold leading-none text-white md:text-[3.6rem]">mapHappens</h1>
                     <p class="text-sm text-white w-full max-w-md">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis
                         aliquid
                         voluptates consequatur earum saepe incidunt alias laboriosam porro illum doloremque, voluptatibus adipisci
@@ -17,21 +18,19 @@
             <main class="flex items-center justify-center">
                 <!-- Form -->
                 <%= form_with model: @user, url: session_path, html: { class: "flex w-full max-w-md flex-col items-center justify-center px-7 py-20" } do |form| %>
-                <%# <form class="flex w-full max-w-md flex-col items-center justify-center px-7 py-20"> %>
                     <div class="w-full space-y-8">
                         <div class="flex flex-col items-center gap-4">
                             <div class="bg-indigo-500 size-20 flex justify-center items-center rounded-2xl">
                                 <!-- <img src="#" alt="Your Logo" class="h-auto w-14" /> -->
                             </div>
                             <div class="flex flex-col items-center gap-1">
-                                <h1 class="text-[1.6rem] font-bold leading-none text-zinc-700">Welcome to COM-GU!</h1>
+                                <h1 class="text-[1.6rem] font-bold leading-none text-zinc-700">Welcome to mapHappens!</h1>
                                 <span class="text-sm text-zinc-700">Please enter your credentials</span>
                             </div>
                         </div>
                         <div class="flex flex-col gap-6">
                         <!-- Username -->
                             <div class="flex flex-col gap-2">
-                            <%# <label for="username" class="text-sm font-medium text-zinc-700">Username</label> %>
                                 <%= form.label :email, class: "text-sm font-medium text-zinc-700" %>
                                 <div class="relative w-full">
                                     <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
@@ -41,9 +40,6 @@
                                             d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                                         </svg>
                                     </div>
-                                    <%# <input type="text" id="username"
-                                        class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-3 py-2 ps-9 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40"
-                                        placeholder="Your email" required /> %>
                                     <%= form.email_field :email, 
                                         id: "email",
                                         class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-3 py-2 ps-9 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40",
@@ -54,7 +50,6 @@
                             </div>
                         <!-- Password -->
                         <div class="flex flex-col gap-2">
-                        <%# <label for="password" class="text-sm font-medium text-zinc-700">Password</label> %>
                             <%= form.label :password, class: "text-sm font-medium text-zinc-700" %>
                             <div class="relative w-full">
                                 <div class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
@@ -64,9 +59,6 @@
                                         d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
                                     </svg>
                                 </div>
-                                <%# <input type="text" id="password"
-                                    class="w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-3 py-2 ps-9 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40"
-                                    placeholder="Your password" required /> %>
                                 <%= form.password_field :password,
                                     id: "password",
                                     class: "w-full rounded-lg border border-indigo-200 bg-indigo-50/50 px-3 py-2 ps-9 text-sm transition duration-300 ease-in-out focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 placeholder:text-indigo-800/40",
@@ -81,21 +73,16 @@
                                             Remember me?
                                         </label>
                                     </div>
-                                    <%# <a href="#" class="ml-1 text-sm text-indigo-500 underline">Forgot Password</a> %>
                                     <%= link_to "Forgot your password?", new_password_reset_path, class: "ml-1 text-sm text-indigo-500 underline" %>
                                 </div>
                             </div>
                         </div>
                         <div class="flex flex-col gap-6">
-                            <%# <button
-                            class="w-full rounded-lg bg-indigo-500 py-2 text-sm font-medium text-zinc-100 transition duration-300 ease-in-out hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-400">Sign
-                            in</button> %>
                             <%= form.submit "Log in",
                                 class: "w-full rounded-lg bg-indigo-500 py-2 text-sm font-medium text-zinc-100 transition duration-300 ease-in-out hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-400" %>
 
                             <div class="flex flex-col items-center">
                                 <span class="text-center text-sm text-zinc-700">Don't have an account?</span>
-                                <%# <a href="#" class="ml-1 text-sm text-indigo-500 underline">Create account</a> %>
                                 <%= link_to "Create account", new_registration_path, class: "ml-1 text-sm text-indigo-500 underline" %>
                             </div>
                         </div>
