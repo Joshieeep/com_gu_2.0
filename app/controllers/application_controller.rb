@@ -1,42 +1,44 @@
 class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
-private
+  private
+  helper_method :current_user
+  helper_method :user_signed_in?
 
-def authenticate_user!
-  redirect_to new_session_path, alert: "You must be logged in to do that." unless user_signed_in?
-end
+  def authenticate_user!
+    redirect_to new_session_path, alert: "You must be logged in to do that." unless user_signed_in?
+  end
 
-# Check if the current user is an admin
-def authorize_admin!
-  redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.admin?
-end
+  # Check if the current user is an admin
+  def authorize_admin!
+    redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.admin?
+  end
 
-# Check if the current user is a moderator
-def authorize_moderator!
-  redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.moderator?
-end
+  # Check if the current user is a moderator
+  def authorize_moderator!
+    redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.moderator?
+  end
 
-def current_user
-  Current.user ||= authenticate_user_from_session
-end
-helper_method :current_user
-def authenticate_user_from_session
-User.find_by(id: session[:user_id])
-end
+  def current_user
+    Current.user ||= authenticate_user_from_session
+  end
 
-def user_signed_in?
-  current_user.present?
-end
-helper_method :user_signed_in?
+  def authenticate_user_from_session
+    User.find_by(id: session[:user_id])
+  end
 
-def login(user)
-  Current.user = user
-  reset_session
-  session[:user_id] = user.id
-end
-def logout(user)
-  Current.user = nil
-  reset_session
-end
+  def user_signed_in?
+    current_user.present?
+  end
+
+  def login(user)
+    Current.user = user
+    reset_session
+    session[:user_id] = user.id
+  end
+
+  def logout(user)
+    Current.user = nil
+    reset_session
+  end
 end
