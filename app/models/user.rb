@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
 
+  has_many :articles, dependent: :destroy
+
   attribute :role, :integer, default: 0
 
   validates :email, presence: true, uniqueness: true

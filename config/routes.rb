@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :articles
   get "admin/dashboard"
   # get "password_resets/new"
   # get "password_resets/create"
@@ -17,6 +18,8 @@ Rails.application.routes.draw do
   resource :session
   resource :password_reset
   resource :password
+  resources :articles
+  get "admin/dashboard", to: "admin#dashboard"
   get "main_pages/test", to: "main_pages#test"
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
