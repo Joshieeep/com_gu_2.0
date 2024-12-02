@@ -82,6 +82,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: com_gu_production
   username: com_gu
   password: <%= ENV["COM_GU_DATABASE_PASSWORD"] %>
