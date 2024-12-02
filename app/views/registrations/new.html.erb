@@ -1,0 +1,62 @@
+<div>
+  <h1 class="font-bold text-4xl">Registrations#new</h1>
+  <p>Find me in app/views/registrations/new.html.erb</p>
+</div>
+<h1>Sign Up</h1>
+
+<%= form_with model: @user, url: registration_path, local: true do |form| %>
+  
+  <!-- Display Error Messages -->
+  <% if form.object.errors.any? %>
+    <div class="error_messages">
+      <h2>There were errors with your submission:</h2>
+      <ul>
+        <% form.object.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <!-- Username Field -->
+  <div>
+    <%= form.label :username, "Username" %>
+    <%= form.text_field :username, placeholder: "Enter your username" %>
+  </div>
+
+  <!-- Firstname Field -->
+  <div>
+    <%= form.label :firstname, "First Name" %>
+    <%= form.text_field :firstname, placeholder: "Enter your first name" %>
+  </div>
+
+  <!-- Lastname Field -->
+  <div>
+    <%= form.label :lastname, "Last Name" %>
+    <%= form.text_field :lastname, placeholder: "Enter your last name" %>
+  </div>
+
+  <!-- Email Field -->
+  <div>
+    <%= form.label :email, "Email" %>
+    <%= form.email_field :email, placeholder: "Enter your email" %>
+  </div>
+
+  <!-- Password Field -->
+  <div>
+    <%= form.label :password, "Password" %>
+    <%= form.password_field :password, placeholder: "Enter your password" %>
+  </div>
+
+  <!-- Password Confirmation Field -->
+  <div>
+    <%= form.label :password_confirmation, "Confirm Password" %>
+    <%= form.password_field :password_confirmation, placeholder: "Confirm your password" %>
+  </div>
+
+  <!-- Submit Button -->
+  <div>
+    <%= form.submit "Sign Up" %>
+  </div>
+
+<% end %>
