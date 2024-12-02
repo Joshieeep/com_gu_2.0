@@ -10,6 +10,18 @@ class User < ApplicationRecord
 
   enum role: { user: 0, admin: 1, moderator: 2 }
 
+  def admin?
+    role == "admin"
+  end
+
+  def moderator?
+    role == "moderator"
+  end
+
+  def user?
+    role == "user"
+  end
+
   after_initialize :set_default_role, if: :new_record?
 
   normalizes :email, with: ->(email) { email.strip.downcase }

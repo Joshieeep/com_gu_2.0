@@ -4,7 +4,17 @@ class ApplicationController < ActionController::Base
 private
 
 def authenticate_user!
-  redirect_to root_path, alert: "You must be logged in to do that." unless  user_signed_in?
+  redirect_to login_path, alert: "You must be logged in to do that." unless user_signed_in?
+end
+
+# Check if the current user is an admin
+def authorize_admin!
+  redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.admin?
+end
+
+# Check if the current user is a moderator
+def authorize_moderator!
+  redirect_to root_path, alert: "You are not authorized to access this page." unless current_user&.moderator?
 end
 
 def current_user

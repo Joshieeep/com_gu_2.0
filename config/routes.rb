@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "admin/dashboard"
   # get "password_resets/new"
   # get "password_resets/create"
   # get "password_resets/edit"
